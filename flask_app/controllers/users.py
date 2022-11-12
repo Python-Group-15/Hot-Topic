@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template, redirect, request, session, flash
+from flask import render_template, redirect, request, session, flash, get_flashed_messages
 from flask_app.models.user import User
 from flask_app.models.topic import Topic
 from flask_app.models.comment import Comment
@@ -82,7 +82,7 @@ def create_page():
     if not session:
         flash('Please log in first!')
         return redirect('/')
-    return render_template('createForm.html')
+    return render_template('createForm.html', user = User.get_by_id({'id': session['user_id']}), messages = get_flashed_messages())
 
 #CreateForm submission route for new topic
 @app.route('/create/submit', methods=['POST'])
