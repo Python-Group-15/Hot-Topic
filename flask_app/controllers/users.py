@@ -121,6 +121,37 @@ def submit_choice(topic_id):
     Response.submit_choice(data)
     return redirect('/results/<int:topic_id>')
 
+@app.route('/view_topic/<int:topic_id>/edit', methods=['get'])
+def edit_page(topic_id):
+    data = {'id':topic_id}
+    return render_template('updateForm.html', topic=Topic.get_one_topic(data))
+
+@app.route('/view_topic/<int:topic_id>/edit', methods=['post'])
+def edit_submit(topic_id):
+    print(request.form)
+    data={
+        'id' : topic_id,
+        'title' : request.form['title'],
+        'question' : request.form['question'],
+        'choice1' : request.form['choice1'],
+        'choice2' : request.form['choice2'],
+        'choice3' : request.form['choice3'],
+        'choice4' : request.form['choice4'],
+        'choice5' : request.form['choice5']
+    }
+    if not Topic.validate_topic(data):
+        return redirect(request.referrer)
+    Topic.update_topic(data)
+    return redirect('/view_topic/{{topic_id}}')
+
+@app.route('/view_topic/<int:topic_id>/delete', methods=['get'])
+def delete_topic(topic_id):
+    data = {
+        'id' : topic_id
+    }
+    Topic.delete_topic(data)
+    return redirect('/dashboard')
+
 #results view page, needs the html document
 @app.route('/results/<int:topic_id>', methods=['get'])
 def view_results(topic_id):
