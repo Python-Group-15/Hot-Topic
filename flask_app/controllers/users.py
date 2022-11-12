@@ -73,6 +73,12 @@ def profile(id):
     }
     return render_template('profile.html', user=User.get_by_id(data), topics=Topic.get_topics_by_user(data))
 
+# @app.route('/user/<int:id>/edit', methods = ['get'])
+# def edit_profile(id):
+#     if 'user_id' not in session:
+#         return redirect('/logout')
+#     return render_template('edit_profile.html', user = User.get_by_id({'id': id}), messages = get_flashed_messages())
+
 #Navigate to the create a topic page
 @app.route('/create', methods=['GET'])
 def create_page():

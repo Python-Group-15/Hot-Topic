@@ -13,10 +13,11 @@
 
 <body class="bg-dark text-warning">
     <div class="container">
-        <nav class="nav-bar">
+        <nav class="nav-bar d-flex justify-content-between align-items-center">
             <h1>Welcome {{user.f_name}}!</h1>
             <div>
-                <a href="/create" class="mr-4">Create Topic</a>
+                <a href="/create" class="mr-2">Create Topic</a>
+                <a href="/user/{{user.id}}" class="mr-2">Profile</a>
                 <a href="/logout">Logout</a>
             </div>
         </nav>
