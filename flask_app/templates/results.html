@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link ref="stylesheet" href="../static/css/style.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Viewing results for {{topic.title}}</h1>
+    <p>Total responses: {{all_responses|length}}</p>
+    <p>{{topic.choice1}}: {{choice1_total|length}}</p>
+    <p>{{topic.choice2}}: {{choice2_total|length}}</p>
+    {% if topic.choice3 %}
+    <p>{{topic.choice3}}: {{choice3_total|length}}</p>
+    {% endif %}
+    {% if topic.choice4 %}
+    <p>{{topic.choice4}}: {{choice4_total|length}}</p>
+    {% endif %}
+    {% if topic.choice5 %}
+    <p>{{topic.choice5}}: {{choice5_total|length}}</p>
+    {% endif %}
+</body>
+</html>
