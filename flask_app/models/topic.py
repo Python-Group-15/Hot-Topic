@@ -54,7 +54,8 @@ class Topic:
     @classmethod
     def get_one_topic(cls,data):
         query = 'SELECT * FROM topics JOIN users ON topics.user_id = users.id WHERE topics.id = %(id)s;'
-        return connectToMySQL(cls.db).query_db(query, data)
+        results = connectToMySQL(cls.db).query_db(query, data)
+        return cls(results[0])
 
 #Delete method using data = {'id' : topic_id} in the controller route
     @classmethod
