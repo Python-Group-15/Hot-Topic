@@ -111,7 +111,7 @@ def view_topic(topic_id):
     return render_template('viewTopic.html', topic=Topic.get_one_topic(data))
 
 #vote/choice sumbission from form on the view topic page, incomplete needs a results view page built as well
-@app.route('/view_topic/<int:topic_id>/submit_choice', methods=['post'])
+@app.route('/view_topic/submit_choice/<int:topic_id>', methods=['post'])
 def submit_choice(topic_id):
     data = {
         'choice' : request.form['choice'],
@@ -119,7 +119,7 @@ def submit_choice(topic_id):
         'topic_id' : topic_id
     }
     Response.submit_choice(data)
-    return redirect('/results/<int:topic_id>')
+    return redirect('/results/' + str(topic_id))
 
 @app.route('/view_topic/<int:topic_id>/edit', methods=['get'])
 def edit_page(topic_id):
@@ -142,7 +142,7 @@ def edit_submit(topic_id):
     if not Topic.validate_topic(data):
         return redirect(request.referrer)
     Topic.update_topic(data)
-    return redirect('/view_topic/{{topic_id}}')
+    return redirect('/view_topic/<int:topic_id>')
 
 @app.route('/view_topic/<int:topic_id>/delete', methods=['get'])
 def delete_topic(topic_id):
@@ -158,7 +158,7 @@ def view_results(topic_id):
     data = {
         'id' : topic_id
     }
-    return render_template('', all_responses=Topic.get_all_responses, all_comments=Comment.get_comments(data))
+    return render_template('results.html', topic=Topic.get_one_topic(data), all_responses=Topic.get_all_responses, all_comments=Comment.get_comments(data))
 
 #Comment submission, should just refresh the page and add the comment to the all_comments array
 @app.route('/results/<int:topic_id>/comment')

@@ -14,5 +14,5 @@ class Response:
 #Adds the voting choice to the responses table
     @classmethod
     def submit_choice(cls,data):
-        query = 'INSERT INTO responses (choice, user_id, topic_id, created_at, updated_at) VALUES (%(choice)s, %(user_id)s, %(topic_id)s, NOW(), NOW());'
+        query = 'INSERT INTO responses (choice, user_id, topic_id) VALUES (%(choice)s, %(user_id)s, %(topic_id)s);'
         return connectToMySQL(cls.db).query_db(query, data)

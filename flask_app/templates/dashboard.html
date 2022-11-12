@@ -36,7 +36,7 @@
                     <tr>
                         <td>{{topic.title}}</td>
                         <td>{{topic.creator.f_name}} {{topic.creator.l_name}}</td>
-                        <td><a href="/results/{{topic_id}}">View Results</a></td>
+                        <td><a href="/results/{{topic.id}}">View Results</a></td>
                         <td>
                             <a href="/view_topic/{{topic.id}}">View</a>
                             {% if topic.user_id == session.user_id %}

@@ -10,21 +10,37 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>{{topic.title}}</h1>
-    <h3>{{topic.question}}</h3>
-    <form action="/view_topic/{{topic.id}}/submit_choice" method="post">
+    <h1>{{topic[0].title}}</h1>
+    <h3>{{topic[0].question}}</h3>
+    <form action="/view_topic/submit_choice/{{topic[0].id}}" method="post">
         <h3>Select your choice!</h3>
-        <input type="radio" name="choice1" id="choice1" value="{{topic.choice1}}">
-        <input type="radio" name="choice2" id="choice2" value="{{topic.choice2}}">
-        {% if topic.choice3 exists %}
-        <input type="radio" name="choice3" id="choice3" value="{{topic.choice3}}">
+        <div>
+            <input type="radio" name="choice" id="choice1" value="{{topic[0].choice1}}">
+            <label for="choice1">{{topic[0].choice1}}</label>
+        </div>
+        <div>
+            <input type="radio" name="choice" id="choice2" value="{{topic[0].choice2}}">
+            <label for="choice2">{{topic[0].choice2}}</label>
+        </div>
+        {% if topic[0].choice3  %}
+        <div>
+            <input type="radio" name="choice" id="choice3" value="{{topic[0].choice3}}">
+            <label for="choice3">{{topic[0].choice3}}</label>
+        </div>
         {% endif %}
-        {% if topic.choice4 exists %}
-        <input type="radio" name="choice4" id="choice4" value="{{topic.choice4}}">
+        {% if topic[0].choice4  %}
+        <div>
+            <input type="radio" name="choice" id="choice4" value="{{topic[0].choice4}}">
+            <label for="choice4">{{topic[0].choice4}}</label>
+        </div>
         {% endif %}
-        {% if topic.choice5 exists %}
-        <input type="radio" name="choice5" id="choice5" value="{{topic.choice5}}">
+        {% if topic[0].choice5  %}
+        <div>
+            <input type="radio" name="choice" id="choice5" value="{{topic[0].choice5}}">
+            <label for="choice5">{{topic[0].choice5}}</label>
+        </div>
         {% endif %}
+        <input type="submit" value="Cast your vote!">
     </form>
 </body>
 </html>
