@@ -22,6 +22,14 @@
             </div>
         </nav>
         <h2>Hot Topics</h2>
+        {% with attempt_vote = get_flashed_messages(category_filter = ['attempt_vote']) %}
+            {% if attempt_vote %}
+                {% for msg in attempt_vote %}
+                    <p class="text-danger"><strong>Error:</strong></p>
+                    <p class="text-danger">{{msg}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <div class="content">
             <table class="table table-bordered table-danger">
                 <thead>

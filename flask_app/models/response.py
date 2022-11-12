@@ -16,3 +16,16 @@ class Response:
     def submit_choice(cls,data):
         query = 'INSERT INTO responses (choice, user_id, topic_id) VALUES (%(choice)s, %(user_id)s, %(topic_id)s);'
         return connectToMySQL(cls.db).query_db(query, data)
+
+    @staticmethod
+    def validate_vote(topic):
+        array = []
+        results = Topic.get_all_responses(topic)
+        is_valid = True
+        for row in results:
+            array.append(row)
+        for i in array:
+            if i['user_id'] == session['user_id']:
+                is_valid = False
+        print(array)
+        return is_valid
