@@ -71,10 +71,7 @@ def profile(id):
     data = {
         "id" : id
     }
-    user_data = {
-        "id" : session['user_id']
-    }
-    return render_template('profile.html', user=User.get_by_id(user_data), topics=Topic.get_topics_by_user(user_data))
+    return render_template('profile.html', user=User.get_by_id(data), topics=Topic.get_topics_by_user(data))
 
 #Navigate to the create a topic page
 @app.route('/create', methods=['GET'])
@@ -124,7 +121,7 @@ def submit_choice(topic_id):
 @app.route('/view_topic/<int:topic_id>/edit', methods=['get'])
 def edit_page(topic_id):
     data = {'id':topic_id}
-    return render_template('updateForm.html', topic=Topic.get_one_topic(data))
+    return render_template('updateForm.html', topic=Topic.get_one_topic(data), messages = get_flashed_messages(), user = User.get_by_id({'id': session['user_id']}))
 
 @app.route('/view_topic/<int:topic_id>/edit', methods=['post'])
 def edit_submit(topic_id):
@@ -142,7 +139,7 @@ def edit_submit(topic_id):
     if not Topic.validate_topic(data):
         return redirect(request.referrer)
     Topic.update_topic(data)
-    return redirect('/view_topic/{{topic_id}}')
+    return redirect('/view_topic/' + str(topic_id))
 
 @app.route('/view_topic/<int:topic_id>/delete', methods=['get'])
 def delete_topic(topic_id):
