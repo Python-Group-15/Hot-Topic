@@ -118,10 +118,11 @@ class Topic:
                 print(topic['choice'+ str(i)])
         #check the choice against each other to determine none are the same
         for i in range(0,len(choices)):
+            if not is_valid:
+                break
             for j in range(1,len(choices)):
                 if choices[i] == choices[j] and i != j:
                     flash('All choices must be unique', 'topic_validation')
                     is_valid = False
                     break
-            break
         return is_valid

@@ -24,3 +24,11 @@ class Comment:
     def get_comments(cls, data):
         query = 'SELECT * FROM comments LEFT JOIN topics ON topics.id = comments.topic_id WHERE topics.id = %(id)s;'
         return connectToMySQL(cls.db).query_db(query, data)
+
+    @staticmethod
+    def validate_comment(comment):
+        is_valid = True
+        if len(comment['comment']) < 1:
+            flash('Please enter a comment', 'comment_validation')
+            is_valid = False
+        return is_valid
