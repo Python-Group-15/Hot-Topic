@@ -16,3 +16,14 @@ class Response:
     def submit_choice(cls,data):
         query = 'INSERT INTO responses (choice, user_id, topic_id) VALUES (%(choice)s, %(user_id)s, %(topic_id)s);'
         return connectToMySQL(cls.db).query_db(query, data)
+
+    @staticmethod
+    def validate_vote(response):
+        query = 'SELECT * FROM responses LEFT JOIN topics ON responses.topic_id = topics.id WHERE topics.id = %(id)s;'
+        results = connectToMySQL(Response.db).query_db(query, response)
+        is_valid = True
+        for row in results:
+            if row.user_id == session['user_id']:
+                flash('Cannot vote twice')
+                is_valid = False
+        return is_valid

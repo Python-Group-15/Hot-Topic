@@ -111,6 +111,8 @@ def view_topic(topic_id):
     data = {
         'id': topic_id
         }
+    if not Response.validate_vote(data):
+        return redirect('/dashboard')
     return render_template('viewTopic.html', topic=Topic.get_one_topic(data))
 
 #vote/choice sumbission from form on the view topic page, incomplete needs a results view page built as well
