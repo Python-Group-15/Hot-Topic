@@ -18,12 +18,14 @@ class Response:
         return connectToMySQL(cls.db).query_db(query, data)
 
     @staticmethod
-    def validate_vote(response):
-        query = 'SELECT * FROM responses LEFT JOIN topics ON responses.topic_id = topics.id WHERE topics.id = %(id)s;'
-        results = connectToMySQL(Response.db).query_db(query, response)
+    def validate_vote(topic):
+        array = []
+        results = Topic.get_all_responses(topic)
         is_valid = True
         for row in results:
-            if row.user_id == session['user_id']:
-                flash('Cannot vote twice')
+            array.append(row)
+        for i in array:
+            if i['user_id'] == session['user_id']:
                 is_valid = False
+        print(array)
         return is_valid
