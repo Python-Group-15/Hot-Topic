@@ -155,7 +155,7 @@ def view_results(topic_id):
     data = {
         'id' : topic_id
     }
-    return render_template('results.html', topic=Topic.get_one_topic(data), all_responses=Topic.get_all_responses, all_comments=Comment.get_comments(data))
+    return render_template('results.html', topic=Topic.get_one_topic(data), all_responses=Topic.get_all_responses(data), all_comments=Comment.get_comments(data), choice1_total=Topic.get_choice1_total(data), choice2_total=Topic.get_choice2_total(data), choice3_total=Topic.get_choice3_total(data), choice4_total=Topic.get_choice4_total(data), choice5_total=Topic.get_choice5_total(data))
 
 #Comment submission, should just refresh the page and add the comment to the all_comments array
 @app.route('/results/<int:topic_id>/comment')

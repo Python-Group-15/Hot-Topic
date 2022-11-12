@@ -75,6 +75,27 @@ class Topic:
         query = 'SELECT * FROM responses LEFT JOIN topics ON responses.topic_id = topics.id WHERE topics.id = %(id)s;'
         return connectToMySQL(cls.db).query_db(query, data)
 
+    @classmethod
+    def get_choice1_total(cls,data):
+        query = 'SELECT * FROM responses LEFT JOIN topics ON responses.topic_id = topics.id WHERE topics.id = %(id)s AND responses.choice = topics.choice1;'
+        return connectToMySQL(cls.db).query_db(query, data)
+    @classmethod
+    def get_choice2_total(cls,data):
+        query = 'SELECT * FROM responses LEFT JOIN topics ON responses.topic_id = topics.id WHERE topics.id = %(id)s AND responses.choice = topics.choice2;'
+        return connectToMySQL(cls.db).query_db(query, data)
+    @classmethod
+    def get_choice3_total(cls,data):
+        query = 'SELECT * FROM responses LEFT JOIN topics ON responses.topic_id = topics.id WHERE topics.id = %(id)s AND responses.choice = topics.choice3;'
+        return connectToMySQL(cls.db).query_db(query, data)
+    @classmethod
+    def get_choice4_total(cls,data):
+        query = 'SELECT * FROM responses LEFT JOIN topics ON responses.topic_id = topics.id WHERE topics.id = %(id)s AND responses.choice = topics.choice4;'
+        return connectToMySQL(cls.db).query_db(query, data)
+    @classmethod
+    def get_choice5_total(cls,data):
+        query = 'SELECT * FROM responses LEFT JOIN topics ON responses.topic_id = topics.id WHERE topics.id = %(id)s AND responses.choice = topics.choice5;'
+        return connectToMySQL(cls.db).query_db(query, data)
+
 #Simple front end validation
     @staticmethod
     def validate_topic(topic):

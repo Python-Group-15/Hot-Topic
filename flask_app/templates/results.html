@@ -10,6 +10,18 @@
     <title>Dashboard</title>
 </head>
 <body>
-    
+    <h1>Viewing results for {{topic.title}}</h1>
+    <p>Total responses: {{all_responses|length}}</p>
+    <p>{{topic.choice1}}: {{choice1_total|length}}</p>
+    <p>{{topic.choice2}}: {{choice2_total|length}}</p>
+    {% if topic.choice3 %}
+    <p>{{topic.choice3}}: {{choice3_total|length}}</p>
+    {% endif %}
+    {% if topic.choice4 %}
+    <p>{{topic.choice4}}: {{choice4_total|length}}</p>
+    {% endif %}
+    {% if topic.choice5 %}
+    <p>{{topic.choice5}}: {{choice5_total|length}}</p>
+    {% endif %}
 </body>
 </html>

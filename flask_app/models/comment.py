@@ -22,5 +22,5 @@ class Comment:
 #Gets all comments on a route, using data = {'id': topic_id} in controller route
     @classmethod
     def get_comments(cls, data):
-        query = 'SELECT * FROM topics LEFT JOIN topics.user_id = users.id WHERE topics.id = %(id)s;'
+        query = 'SELECT * FROM comments LEFT JOIN topics ON topics.id = comments.topic_id WHERE topics.id = %(id)s;'
         return connectToMySQL(cls.db).query_db(query, data)
