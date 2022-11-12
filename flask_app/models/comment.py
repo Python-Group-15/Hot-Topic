@@ -9,7 +9,7 @@ class Comment:
         self.id = data['id']
         self.comment = data['comment']
         self.topic_id = data['topic_id']
-        self.user_id = data['user_id']
+        self.user_id = session['user_id']
         #Empty creator to pull information with get comments method
         self.creator = None
     
