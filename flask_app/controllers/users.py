@@ -3,6 +3,7 @@ from flask import render_template, redirect, request, session, flash
 from flask_app.models.user import User
 from flask_app.models.topic import Topic
 from flask_app.models.comment import Comment
+from flask_app.models.response import Response
 # another model
 from flask_bcrypt import Bcrypt
 
@@ -109,3 +110,32 @@ def view_topic(topic_id):
         }
     return render_template('INSERT VIEW/VOTE HTML', topic=Topic.get_one_topic(data))
 
+#vote/choice sumbission from form on the view topic page, incomplete needs a results view page built as well
+@app.route('/view_topic/<int:topic_id>/submit_choice', methods=['post'])
+def submit_choice(topic_id):
+    data = {
+        'choice' : request.form['choice'],
+        'user_id' : session['user_id'],
+        'topic_id' : topic_id
+    }
+    Response.submit_choice(data)
+    return redirect('/results/<int:topic_id>')
+
+#results view page, needs the html document
+@app.route('/results/<int:topic_id>', methods=['get'])
+def view_results(topic_id):
+    data = {
+        'id' : topic_id
+    }
+    return render_template('', all_responses=Topic.get_all_responses, all_comments=Comment.get_comments(data))
+
+#Comment submission, should just refresh the page and add the comment to the all_comments array
+@app.route('/results/<int:topic_id>/comment')
+def submit_comment(topic_id):
+    data = {
+        'comment' : request.form['comment'],
+        'user_id' : session['user_id'],
+        'topic_id' : topic_id
+    }
+    Comment.add_comment(data)
+    return redirect(request.referrer)
