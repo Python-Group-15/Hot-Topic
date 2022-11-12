@@ -28,7 +28,7 @@
                         <th>Topic</th>
                         <th>Posted By</th>
                         <th>Results</th>
-                        <th>Actions</th> <!-- again conditional rendering for logged in user and post's owner-->
+                        <th>Actions</th> <!-- conditional rendering for logged in user and post's owner-->
                     </tr>
                 </thead>
                 <tbody>
@@ -38,9 +38,9 @@
                         <td>{{topic.creator.f_name}} {{topic.creator.l_name}}</td>
                         <td><a href="/results/{{topic_id}}">View Results</a></td>
                         <td>
-                            <a href="/view_topic/{{topic.id}}">View</a>
+                            <a href="/view_topic/{{topic.id}}" class="mr-2">View</a>
                             {% if topic.user_id == session.user_id %}
-                            <a href="/view_topic/{{topic.id}}/edit">Edit</a>
+                            <a href="/view_topic/{{topic.id}}/edit" class="mr-2">Edit</a>
                             <a href="/view_topic/{{topic.id}}/delete">Delete</a>
                             {% endif %}
                         </td>
