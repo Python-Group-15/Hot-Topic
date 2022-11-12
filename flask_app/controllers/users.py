@@ -107,3 +107,4 @@ def view_topic(topic_id):
         'id': topic_id
         }
     return render_template('INSERT VIEW/VOTE HTML', topic=Topic.get_one_topic(data))
+
