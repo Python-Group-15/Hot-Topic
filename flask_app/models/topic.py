@@ -109,4 +109,19 @@ class Topic:
         if len(topic['choice1']) < 1 or len(topic['choice2']) < 1:
             flash('Must provide at least a first and second choice', 'topic_validation')
             is_valid = False
+        #validation to check that each choice is unique
+        choices = []
+        #append choices in the array if they were filled out
+        for i in range(1,6):
+            if topic['choice'+ str(i)]:
+                choices.append(topic['choice'+ str(i)])
+                print(topic['choice'+ str(i)])
+        #check the choice against each other to determine none are the same
+        for i in range(0,len(choices)):
+            for j in range(1,len(choices)):
+                if choices[i] == choices[j] and i != j:
+                    flash('All choices must be unique', 'topic_validation')
+                    is_valid = False
+                    break
+            break
         return is_valid
