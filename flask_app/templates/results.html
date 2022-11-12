@@ -9,8 +9,16 @@
     <link ref="stylesheet" href="../static/css/style.css">
     <title>Dashboard</title>
 </head>
-<body>
-    <h1>Viewing results for {{topic.title}}</h1>
+<body class="bg-dark text-warning">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Viewing results for {{topic.title}}</h1>
+        <div>
+            <a href="/dashboard" class="mr-2">Dashboard</a>
+            <a href="/user/{{user.id}}" class="mr-2">Profile</a>
+            <a href="/logout" class="mr-2">Logout</a>
+        </div>
+
+    </div>
     <p>Total responses: {{all_responses|length}}</p>
     <p>{{topic.choice1}}: {{choice1_total|length}}</p>
     <p>{{topic.choice2}}: {{choice2_total|length}}</p>
@@ -22,6 +30,20 @@
     {% endif %}
     {% if topic.choice5 %}
     <p>{{topic.choice5}}: {{choice5_total|length}}</p>
+    {% endif %}
+
+    <form action="/results/{{topic.id}}/comment" method="POST">
+        <label class="form-label" for="comment">Write a comment:</label>
+        <textarea class="form-control" name="comment" id="comment" cols="5" rows="5"></textarea>
+        <button>Post comment</button>
+    </form>
+
+    {% if all_comments %}
+    <hr>
+    {% for comment in all_comments %}
+        <p>{{all_users[comment.user_id-1].f_name}} {{all_users[comment.user_id-1].l_name}} commented: {{comment.comment}}</p>
+        <hr>
+    {% endfor %}
     {% endif %}
 </body>
 </html>
