@@ -48,7 +48,7 @@
                         <td><a href="/results/{{topic.id}}">View Results</a></td>
                         <td>
                             <a href="/view_topic/{{topic.id}}" class="mr-2">Vote</a>
-                            {% if topic.user_id == session.user_id %}
+                            {% if topic.creator.id == session['user_id'] %}
                             <a href="/view_topic/{{topic.id}}/edit" class="mr-2">Edit</a>
                             <a href="/view_topic/{{topic.id}}/delete">Delete</a>
                             {% endif %}
