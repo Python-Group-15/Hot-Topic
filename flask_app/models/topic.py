@@ -68,6 +68,12 @@ class Topic:
         query = 'UPDATE topics SET title=%(title)s, question=%(question)s, choice1=%(choice1)s, choice2=%(choice2)s, choice3=%(choice3)s, choice4=%(choice4)s, choice5=%(choice5)s WHERE id=%(id)s;'
         return connectToMySQL(cls.db).query_db(query, data)
 
+#Returns all the responses for that topic, needs data = {'id':topic_id} from controller
+    @classmethod
+    def get_all_responses(cls,data):
+        query = 'SELECT * FROM responses LEFT JOIN topics ON responses.topic_id = topics.id WHERE topics.id = %(id)s;'
+        return connectToMySQL(cls.db).query_db(query, data)
+
 #Simple front end validation
     @staticmethod
     def validate_topic(topic):
