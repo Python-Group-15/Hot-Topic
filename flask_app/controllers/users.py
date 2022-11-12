@@ -108,7 +108,7 @@ def view_topic(topic_id):
     data = {
         'id': topic_id
         }
-    return render_template('INSERT VIEW/VOTE HTML', topic=Topic.get_one_topic(data))
+    return render_template('viewTopic.html', topic=Topic.get_one_topic(data))
 
 #vote/choice sumbission from form on the view topic page, incomplete needs a results view page built as well
 @app.route('/view_topic/<int:topic_id>/submit_choice', methods=['post'])
