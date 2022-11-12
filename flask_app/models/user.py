@@ -52,6 +52,13 @@ class User:
         results = connectToMySQL(cls.db).query_db(query, data)
         return cls(results[0])
 
+#UPDATE BY ID
+    # @classmethod
+    # def update_by_id(cls, data):
+    #     query = query = "UPDATE users SET f_name = %(f_name)s, l_name = %(l_name)s, email = %(email)s, password = %(password)s WHERE id = %(id)s"
+    #     return connectToMySQL(cls.db).query_db(query, data)
+
+
 
 # @classmethod
 # def get_user_posts(cls, data):
