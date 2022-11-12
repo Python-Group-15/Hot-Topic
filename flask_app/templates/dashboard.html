@@ -11,21 +11,18 @@
     <title>Dashboard</title>
 </head>
 
-<body>
+<body class="bg-dark text-warning">
     <div class="container">
         <nav class="nav-bar">
             <h1>Welcome {{user.f_name}}!</h1>
             <div>
-                <a class="">Create Topic</a>
-                <!-- <a class="" >Profile</a> -->
-                <a class="/logout">Logout</a>
-                <!-- conditional rendering of nav choices? -->
-                <a class="">Dashboard</a>
+                <a href="/create" class="mr-4">Create Topic</a>
+                <a href="/logout">Logout</a>
             </div>
         </nav>
         <h2>Hot Topics</h2>
         <div class="content">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-danger">
                 <thead>
                     <tr>
                         <th>Topic</th>
@@ -39,13 +36,12 @@
                     <tr>
                         <td>{{topic.title}}</td>
                         <td>{{topic.creator.f_name}} {{topic.creator.l_name}}</td>
-                        <td><a href="/view_topic/{{topic.id}}">View Results</a></td>
+                        <td><a href="/results/{{topic_id}}">View Results</a></td>
                         <td>
-                            <a href="">Vote</a>
-                            <a href="">View</a>
+                            <a href="/view_topic/{{topic.id}}">View</a>
                             {% if topic.user_id == session.user_id %}
-                            <a href="">Edit</a>
-                            <a href="">Delete</a>
+                            <a href="/view_topic/{{topic.id}}/edit">Edit</a>
+                            <a href="/view_topic/{{topic.id}}/delete">Delete</a>
                             {% endif %}
                         </td>
                     </tr>
