@@ -159,14 +159,15 @@ form button img {
     color: white;
 }
 
-
-/* 
-commenting section styling?
 .comment {
     position: relative;
     margin: 20px auto;
 }
 
+.comments-posted{
+    height: 200px;
+    overflow-y: auto;
+}
 .comment-heading {
     display: flex;
     align-items: center;
@@ -187,4 +188,4 @@ commenting section styling?
 
 .comment-author:hover {
     text-decoration: underline;
-} */
+}

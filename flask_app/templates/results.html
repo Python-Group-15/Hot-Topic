@@ -46,16 +46,20 @@
                         <button>Send?<img src="../static/img/export(4).png"></button>
                     </form>
                 </div>
-                <div class="comments-posted">
+                <div>
                     {% if all_comments %}
                     <h4>Comments:</h4>
+                    <hr>
+                    <div class="comments-posted">
                     {% for comment in all_comments %}
                     <div class="comment-info">
                         <p class="comment-author">{{all_users[comment.user_id-1].f_name}}
-                            {{all_users[comment.user_id-1].l_name}}</p>
+                            {{all_users[comment.user_id-1].l_name}} says:</p>
                         <p class="comment-body">{{comment.comment}}</p>
+                        <hr>
                     </div>
                     {% endfor %}
+                </div>
                     {% endif %}
                 </div>
             </div>
