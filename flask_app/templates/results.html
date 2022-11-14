@@ -9,6 +9,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link ref="stylesheet" href="../static/css/style.css"> -->
     <link rel="stylesheet" href="../static/css/SHresult.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <title>Dashboard</title>
 </head>
 
@@ -37,7 +38,31 @@
                 {% if topic.choice5 %}
                 <h3>{{topic.choice5}}: {{choice5_total|length}}</h3>
                 {% endif %}
+            <canvas id="resultChart" style="width:100%;max-width:600px;"></canvas>
+            <script>
+                var xValues = ["{{topic.choice1}}", "{{topic.choice2}}", "{{topic.choice3}}", "{{topic.choice4}}", "{{topic.choice5}}"]
+                var yValues = ["{{choice1_total|length}}", "{{choice2_total|length}}", "{{choice3_total|length}}", "{{choice4_total|length}}", "{{choice5_total|length}}"]
+                var barColors = ['red', "blue", "green", "yellow", "brown"]
+
+                new Chart("resultChart", {
+                    type: "pie",
+                    data: {
+                        labels: xValues,
+                        datasets: [{backgroundColor:barColors, data:yValues}]
+                    },
+                    options:{
+                        title: {
+                            display: true,
+                            text: "Voting Results"
+                        }
+                    }
+                })
+            </script>
             </div>
+
+
+
+
             <div class="comment-thread">
                 <div class="comment-form">
                     <form action="/results/{{topic.id}}/comment" method="POST">
