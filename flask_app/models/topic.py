@@ -60,6 +60,8 @@ class Topic:
 #Delete method using data = {'id' : topic_id} in the controller route
     @classmethod
     def delete_topic(cls, data):
+        query = "DELETE FROM comments WHERE topic_id = %(id)s;"
+        connectToMySQL(cls.db).query_db(query, data)
         query = 'DELETE FROM topics WHERE id = %(id)s;'
         return connectToMySQL(cls.db).query_db(query, data)
 
