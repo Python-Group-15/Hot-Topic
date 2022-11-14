@@ -25,12 +25,12 @@
             </nav>
             <h2>Welcome {{user.f_name}}!</h2>
             {% with attempt_vote = get_flashed_messages(category_filter = ['attempt_vote']) %}
-            {% if attempt_vote %}
-            {% for msg in attempt_vote %}
-            <p class="warning-message"><strong>Error:</strong></p>
-            <p class="warning-message">{{msg}}</p>
-            {% endfor %}
-            {% endif %}
+                {% if attempt_vote %}
+                    {% for msg in attempt_vote %}
+                        <p class="warning-message"><strong>Error:</strong></p>
+                        <p class="warning-message">{{msg}}</p>
+                    {% endfor %}
+                {% endif %}
             {% endwith %}
             <div class="content">
                 <table>
