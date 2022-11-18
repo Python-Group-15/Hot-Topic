@@ -62,6 +62,8 @@ class Topic:
     def delete_topic(cls, data):
         query = "DELETE FROM comments WHERE topic_id = %(id)s;"
         connectToMySQL(cls.db).query_db(query, data)
+        query = "DELETE FROM responses WHERE topic_id = %(id)s;"
+        connectToMySQL(cls.db).query_db(query, data)
         query = 'DELETE FROM topics WHERE id = %(id)s;'
         return connectToMySQL(cls.db).query_db(query, data)
 
