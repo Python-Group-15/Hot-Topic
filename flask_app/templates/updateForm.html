@@ -15,7 +15,7 @@
             <h1>Hot Topics</h1>
             <nav>
                 <ul>
-                    <li><a href="/logout"><img class="logout-button" src="../static/img/logout.png"></a></li>
+                    <li><a href="/logout"><img class="logout-button" src="/static/img/logout.png"></a></li>
                     <li><a href="/dashboard">Dashboard</a></li>
                     <li><a href="/user/{{user.id}}">Profile</a></li>
                 </ul>
@@ -28,6 +28,7 @@
                     {% endfor %}
                 {% endif %}
                 <p>* : input required</p>
+                <br/>
                 <div class="form-control">
                     <label for="title" class="form-label">Title *</label>
                     <input class="form-control" type="text" name="title" value="{{topic.title}}">

@@ -120,6 +120,13 @@ form {
     justify-self: center;
 }
 
+.form-label {
+    display:inline-block;
+    width: 200px;
+    line-height: 5px;
+    margin-bottom: 5px;
+}
+
 form > button {
     border: 1px solid rgb(233, 12, 167);
     border-radius: 50px;
